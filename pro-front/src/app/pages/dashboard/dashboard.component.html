@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Admin Dashboard</h2>
+    <button class="btn  " (click)="navigateToAddExam()" style="background-color:rgb(186, 123, 187) ; color:white;">
+      Create New Exam
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let exam of exams">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ exam.title }}</h5>
+          <p class="card-text">{{ exam.description }}</p>
+          <p class="text-muted">Duration: {{ exam.duration }} minutes</p>
+          <div class="d-flex gap-2">
+            <button
+            class="btn text-white me-2"
+            (click)="navigateToEditExam(exam._id)"
+            style="background-color: rgb(182, 90, 165);"
+          >
+            Edit
+          </button>
+          
+          <button
+            class="btn text-white me-2"
+            (click)="deleteExam(exam._id)"
+            style="background-color: rgb(198, 75, 200);"
+          >
+            Delete
+          </button>
+          
+          <button
+            class="btn text-white"
+            (click)="navigateToQuestions(exam._id)"
+            style="background-color: rgb(148, 20, 173);"
+          >
+            Manage Questions
+          </button>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
