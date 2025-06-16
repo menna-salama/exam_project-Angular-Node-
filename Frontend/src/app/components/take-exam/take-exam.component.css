@@ -1,0 +1,58 @@
+.take-exam-wrapper {
+    min-height: 100vh;
+    background-color: #f4f0fa; 
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  
+  .exam-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .exam-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #343a40;
+  }
+  
+  .exam-form .question-block {
+    margin-bottom: 25px;
+  }
+  
+  .question-text {
+    font-weight: bold;
+    color: #212529;
+    margin-bottom: 10px;
+  }
+  
+  .form-check-label {
+    color: #555;
+  }
+  
+  .form-check-input {
+    accent-color: #6f42c1; 
+  }
+  
+  .submit-btn-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .submit-btn-container .btn-primary {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+    font-weight: 600;
+    padding: 8px 30px;
+    transition: 0.3s ease;
+  }
+  
+  .submit-btn-container .btn-primary:hover {
+    background-color: #5a379e;
+    border-color: #5a379e;
+  }
+  

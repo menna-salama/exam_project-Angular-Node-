@@ -1,0 +1,21 @@
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">{{ isAdmin ? 'All Students\' Results' : 'My Results' }}</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="results.length === 0 && !errorMessage" class="alert alert-warning text-center" role="alert">
+    No results available.
+  </div>
+  <div *ngIf="results.length > 0" class="row">
+    <div class="col-md-6 mb-4" *ngFor="let result of results">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Exam ID: {{ result.examId }}</h5>
+          <p class="card-text">Score: {{ result.score }} / {{ result.totalQuestions }}</p>
+          <p class="card-text">Percentage: {{ (result.score / result.totalQuestions * 100).toFixed(2) }}%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

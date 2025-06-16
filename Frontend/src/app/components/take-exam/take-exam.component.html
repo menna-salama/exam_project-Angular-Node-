@@ -1,0 +1,34 @@
+<div class="take-exam-wrapper">
+  <div *ngIf="errorMessage" class="alert alert-danger text-center mb-4" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  @if(questions.length === 0 && !errorMessage){
+    <div class="alert alert-warning text-center" role="alert">
+      No Questions available at the moment.
+    </div>
+  }@else{
+    <div class="exam-container">
+      <h2 class="exam-title">Take Your Exam</h2>
+
+      <form class="exam-form">
+        <div *ngFor="let question of questions; let i = index" class="question-block">
+          <p class="question-text">{{ i + 1 }}. {{ question.text }}</p>
+          <div *ngFor="let option of question.options" class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              [name]="question._id"
+              (change)="selectAnswer(question._id!, option)"
+            />
+            <label class="form-check-label">{{ option }}</label>
+          </div>
+        </div>
+
+        <div class="submit-btn-container">
+          <button type="button" class="btn btn-primary" >Submit Exam</button>
+        </div>
+      </form>
+    </div>
+  }
+</div>

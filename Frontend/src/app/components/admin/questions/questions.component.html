@@ -1,0 +1,73 @@
+
+<div class="container mt-5">
+  <h2 class="text-white mb-3 text-center">Manage Questions for Exam {{ examId }}</h2>
+  <p class="text-white text-center mb-4">Add, edit, or remove questions</p>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center mb-4" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div class="text-end mb-4">
+    <button class="btn btn-primary" (click)="showCreateForm = true">Add Question</button>
+    <a class="btn btn-secondary ms-2" [routerLink]="['/admin/exams']">Back to Exams</a>
+  </div>
+
+  <div *ngIf="showCreateForm || selectedQuestion" class="card p-4 mb-4 bg-light">
+    <h5 class="card-title">{{ selectedQuestion ? 'Edit Question' : 'Add New Question' }}</h5>
+    <form (ngSubmit)="selectedQuestion ? updateQuestion() : createQuestion()" class="mt-3">
+      <div *ngIf="selectedQuestion">
+        <div class="mb-3">
+          <label for="text" class="form-label">Question Text</label>
+          <input [(ngModel)]="selectedQuestion.text" name="text" type="text" class="form-control" id="text" required>
+        </div>
+        <div class="mb-3" *ngFor="let option of selectedQuestion.options; let i = index">
+          <label for="option{{i}}" class="form-label">Option {{i + 1}}</label>
+          <input [(ngModel)]="selectedQuestion.options[i]" [name]="'option' + i" type="text" class="form-control" [id]="'option' + i" required>
+        </div>
+        <div class="mb-3">
+          <label for="correctAnswer" class="form-label">Correct Answer</label>
+          <select [(ngModel)]="selectedQuestion.correctAnswer" name="correctAnswer" class="form-select" id="correctAnswer" required>
+            <option *ngFor="let option of selectedQuestion.options; let i = index" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="!selectedQuestion && showCreateForm">
+        <div class="mb-3">
+          <label for="text" class="form-label">Question Text</label>
+          <input [(ngModel)]="newQuestion.text" name="text" type="text" class="form-control" id="text" required>
+        </div>
+        <div class="mb-3" *ngFor="let option of newQuestion.options; let i = index">
+          <label for="option{{i}}" class="form-label">Option {{i + 1}}</label>
+          <input [(ngModel)]="newQuestion.options[i]" [name]="'option' + i" type="text" class="form-control" [id]="'option' + i" required>
+        </div>
+        <div class="mb-3">
+          <label for="correctAnswer" class="form-label">Correct Answer</label>
+          <select [(ngModel)]="newQuestion.correctAnswer" name="correctAnswer" class="form-select" id="correctAnswer" required>
+            <option *ngFor="let option of newQuestion.options; let i = index" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success me-2">{{ selectedQuestion ? 'Update' : 'Create' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit(); showCreateForm = false">Cancel</button>
+    </form>
+  </div>
+
+  <div *ngIf="questions.length === 0 && !errorMessage" class="alert alert-warning text-center" role="alert">
+    No questions available at the moment.
+  </div>
+
+  <div *ngIf="questions.length > 0">
+    <h4 class="text-white mb-3">Question List</h4>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let question of questions">
+        <div>
+          {{ question.text }}
+        </div>
+        <div>
+          <button class="btn btn-sm btn-outline-warning me-2" (click)="editQuestion(question)">✏️</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteQuestion(question._id!)">🗑️</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

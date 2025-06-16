@@ -1,0 +1,32 @@
+.card {
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  
+  .btn-primary {
+    background-color: #6b46c1;
+    border-color: #6b46c1;
+  }
+  
+  .btn-primary:hover {
+    background-color: #553c9a;
+    border-color: #553c9a;
+  }
+  
+  .input-group-text {
+    background-color: #fff;
+    border-left: none;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #d3cce3, #e9d5ff, #c3e6f9);
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+  }
+  
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }

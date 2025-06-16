@@ -1,0 +1,53 @@
+<div class="min-vh-100 d-flex justify-content-center align-items-center ">
+  <div class="card p-2 shadow-sm" style="max-width: 400px; width: 100%;">
+    <div class="card-body text-center">
+      <h2 class="card-title mb-3">Create Account</h2>
+      <p class="text-muted mb-4">Sign up to start your exams</p>
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-group">
+            <input type="text" id="username" [(ngModel)]="user.username" name="username" required
+              class="form-control" placeholder="Choose a username">
+            <span class="input-group-text">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <div class="input-group">
+            <input type="email" id="email" [(ngModel)]="user.email" name="email" required
+              class="form-control" placeholder="Enter your email">
+            <span class="input-group-text">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" id="password" [(ngModel)]="user.password" name="password" required
+              class="form-control" placeholder="Create a password">
+            <span class="input-group-text">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="role" class="form-label">Role</label>
+          <select id="role" [(ngModel)]="user.role" name="role" required class="form-select">
+            <option value="student">Student</option>
+          </select>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+        <p class="text-center">
+          Already have an account? <a href="/login" class="text-decoration-underline">Log In</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

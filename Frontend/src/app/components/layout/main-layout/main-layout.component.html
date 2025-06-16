@@ -1,0 +1,40 @@
+<!-- Navbar -->
+<app-navbar></app-navbar>
+
+<!-- Layout -->
+<div class="d-flex mt-2" style="min-height: calc(100vh - 56px);">
+  <!-- Sidebar -->
+  <div class="bg-body-secondary border-end mt-5 p-3" style="width: 220px; z-index: 1;">
+    <ul class="nav flex-column">
+      <li class="nav-item mb-3">
+        <a class="nav-link text-dark" routerLink="/home"><i class="fas fa-home me-2"></i> Dashboard</a>
+      </li>
+      @if(isAdmin()){
+        <li class="nav-item mb-3">
+          <a class="nav-link text-dark" routerLink="/admin/exams"><i class="fas fa-clipboard-list me-2"></i> Exams</a>
+        </li>
+      }@else {
+        <li class="nav-item mb-3">
+          <a class="nav-link text-dark" routerLink="/exams"><i class="fas fa-clipboard-list me-2"></i> Exams</a>
+        </li>
+      }
+      
+      <li class="nav-item mb-3">
+        <a class="nav-link text-dark" routerLink="/results"><i class="fas fa-chart-bar me-2"></i> Results</a>
+      </li>
+      <li class="nav-item mb-3">
+        <a class="nav-link text-dark" routerLink="/profile"><i class="fas fa-user me-2"></i> Profile</a>
+      </li>
+      <li class="nav-item mt-1">
+        <a class="nav-link text-purple" (click)="onLogout()" style="cursor: pointer;">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
+      </li>      
+    </ul>
+  </div>
+
+  <!-- Page Content -->
+  <div class="flex-grow-1 p-4" style="background: inherit;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
