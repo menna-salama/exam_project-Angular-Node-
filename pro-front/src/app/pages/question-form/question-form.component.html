@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="mx-auto" style="max-width: 700px;">
+    <h2 class="mb-4">{{ isEditing ? "Edit Question" : "Add New Question" }}</h2>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="question" class="form-label fw-bold">Question</label>
+            <input
+              type="text"
+              id="question"
+              name="question"
+              [(ngModel)]="questionForm.question"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Options</label>
+            <div
+              *ngFor="let option of questionForm.options; let i = index"
+              class="d-flex mb-2"
+            >
+              <input
+                type="text"
+                [(ngModel)]="questionForm.options[i]"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control me-2"
+                placeholder="Option {{ i + 1 }}"
+                required
+              />
+              <button
+                type="button"
+                (click)="removeOption(i)"
+                class="btn btn-danger"
+                [disabled]="questionForm.options.length <= 2"
+              >
+                Remove
+              </button>
+            </div>
+            <button
+              type="button"
+              (click)="addOption()"
+              class="btn btn-secondary mt-2"
+            >
+              Add Option
+            </button>
+          </div>
+
+          <div class="mb-3">
+            <label for="correct_answer" class="form-label fw-bold">
+              Correct Answer (Option Index)
+            </label>
+            <select
+              id="correct_answer"
+              name="correct_answer"
+              [(ngModel)]="questionForm.correct_answer"
+              class="form-control"
+              required
+            >
+              <option
+                *ngFor="let option of questionForm.options; let i = index"
+                [value]="i"
+              >
+                Option {{ i + 1 }}
+              </option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="points" class="form-label fw-bold">Points</label>
+            <input
+              type="number"
+              id="points"
+              name="points"
+              [(ngModel)]="questionForm.points"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn text-white" style="background-color: rgb(182, 90, 165);">
+              {{ isEditing ? "Update" : "Create" }}
+            </button>
+            <button type="button" class="btn text-white" (click)="cancel()" style="background-color: rgb(198, 75, 200);">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

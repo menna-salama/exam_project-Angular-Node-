@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="mx-auto" style="max-width: 700px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Questions for {{ currentExam?.title }}</h2>
+      <button class="btn  " (click)="navigateToAddQuestion()" style="background-color:rgb(186, 123, 187) ; color:white;">
+        Add New Question
+      </button>
+    </div>
+
+    <div *ngIf="questions.length > 0">
+      <div class="card mb-3 shadow-sm" *ngFor="let question of questions">
+        <div class="card-body">
+          <h5 class="card-title">{{ question.question }}</h5>
+          <ul class="list-group list-group-flush mb-3">
+            <li
+              *ngFor="let option of question.options; let i = index"
+              class="list-group-item"
+              [ngClass]="{
+                'bg-success text-white': i === question.correct_answer
+              }"
+            >
+              {{ option }} {{ i === question.correct_answer ? "(Correct)" : "" }}
+            </li>
+          </ul>
+          <p class="text-muted">Points: {{ question.points }}</p>
+          <div class="d-flex gap-2">
+            <button
+              class="btn text-white"
+              (click)="navigateToEditQuestion(question._id)"
+              style="background-color: rgb(182, 90, 165);"
+            >
+              Edit
+            </button>
+            <button
+              class="btn text-white"
+              (click)="deleteQuestion(question._id)"
+              style="background-color: rgb(198, 75, 200);"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="questions.length === 0" class="text-muted text-center">
+      No questions found. Add a new question to get started!
+    </p>
+  </div>
+</div>
